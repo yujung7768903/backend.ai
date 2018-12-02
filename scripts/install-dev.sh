@@ -378,6 +378,7 @@ cd "${INSTALL_PATH}/manager"
 cp alembic.ini.sample alembic.ini
 python -m ai.backend.manager.cli schema oneshot head
 python -m ai.backend.manager.cli --db-addr=localhost:8100 --db-user=postgres --db-password=develove --db-name=backend fixture populate example_keypair
+python -m ai.backend.manager.cli --db-addr=localhost:8100 --db-user=postgres --db-password=develove --db-name=backend fixture populate example_scaling_group
 
 show_info "Installing Python client SDK/CLI source..."
 cd "${INSTALL_PATH}"
