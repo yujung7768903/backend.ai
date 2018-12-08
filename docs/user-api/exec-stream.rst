@@ -1,13 +1,54 @@
-Code Exectuion and Monitoring (Streaming Mode)
-==============================================
+Streaming
+=========
 
 The streaming mode provides a direct web-based terminal access to kernel containers.
+
+
+Code Execution
+--------------
+* URI: ``/stream/kernel/:id/execute``
+* Method: GET upgraded to WebSockets
+
+This is a real-time streaming version of :doc:`exec-batch` and :doc:`exec-query` which uses
+long polling via HTTP.
+
+(under construction)
+
+.. versionadded:: v4.20181215
+
+
+Service Proxy (HTTP)
+--------------------
+
+* URI: ``/stream/kernel/:id/httpproxy?service=:service``
+* Method: GET upgraded to WebSockets
+
+The service proxy API allows clients to directly connect to service daemons running *inside*
+compute sessions, such as Jupyter and TensorBoard.
+
+(under construction)
+
+.. versionadded:: v4.20181215
+
+
+Service Proxy (TCP)
+-------------------
+
+* URI: ``/stream/kernel/:id/tcpproxy?service=:service``
+* Method: GET upgraded to WebSockets
+
+This is the TCP version of service proxy, so that client users can connect to native services
+running inside compute sessions, such as SSH.
+
+(under construction)
+
+.. versionadded:: v4.20181215
 
 
 Terminal Emulation
 ------------------
 
-* URI: ``/stream/kernel/:id/pty``
+* URI: ``/stream/kernel/:id/pty?service=:service``
 * Method: GET upgraded to WebSockets
 
 This endpoint provides a duplex continuous stream of JSON objects via the native WebSocket.
@@ -19,6 +60,10 @@ across different browsers.
 
    We do *not* provide any legacy WebSocket emulation interfaces such as socket.io or SockJS.
    You need to set up your own proxy if you want to support legacy browser users.
+
+.. versionchanged:: v4.20181215
+
+   Added the ``service`` query parameter.
 
 Parameters
 """"""""""
@@ -128,13 +173,15 @@ Server-side errors
    }
 
 
-Executing Snippet via WebSocket
--------------------------------
+Event Monitoring
+----------------
 
-* URI: ``/stream/kernel/:id/ws``
+* URI: ``/stream/kernel/:id/events``
 * Method: GET upgraded to WebSockets
 
-This API function is read-only --- meaning that you cannot send any data to this URI.
+Provides a continuous message-by-message JSON object stream of lifecycle, code
+execution, and proxy related events from a compute session.  This API function
+is read-only --- meaning that you cannot send any data to this URI.
 
 .. warning::
 
@@ -144,6 +191,10 @@ This API function is read-only --- meaning that you cannot send any data to this
 
    There is timeout enforced in the server-side but you may need to adjust
    defaults in your client-side WebSocket library.
+
+.. versionchanged:: v4.20181215
+
+   Renamed the URI to ``events``.
 
 
 Parameters

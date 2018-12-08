@@ -1,52 +1,37 @@
-Python Client Library
-=====================
+Client SDK Libraries and Tools
+==============================
 
-We provide an official Python client library that abstracts the low-level HTTP REST APIs via a function-based interface.
+We provide official client SDKs for popular programming languages that abstract
+the low-level REST/GraphQL APIs via functional and object-oriented interfaces.
 
-Requirements
-------------
+Python
+------
 
-Python 3.6 or higher is required.
-You can download `its official installer from python.org <https://www.python.org/downloads/>`_, or use a 3rd-party package/version manager such as `homebrew <http://brew.sh/index_ko.html>`_, `miniconda <http://conda.pydata.org/miniconda.html>`_, or `pyenv <https://github.com/yyuu/pyenv>`_.
-It works on Linux, macOS, and Windows.
+Python is the most extensively supported client programming language.
+The SDK also includes the official command-line interface.
 
-Installation
-------------
+* :doc:`Documentation for Backend.AI Client SDK for Python <client-py:index>`
+* `Source repository for Backend.AI Client SDK for Python <https://github.com/lablup/backend.ai-client-py>`_
 
-We recommend to create a virtual environment for isolated, unobtrusive installation of the library.
+Javascript
+----------
 
-.. code-block:: shell
+The Javascript SDK is for writing client apps on both NodeJS and web browsers.
+It is also used for our Atom/VSCode plugins.
 
-   $ python3 -m venv venv-backend-ai
-   $ source venv-backend-ai/bin/activate
-   (venv-backend-ai) $
+* :doc:`Documentation for Backend.AI Client SDK for Javascript <client-js:index>` (under construction)
+* `Source repository for Backend.AI Client SDK for Javascript <https://github.com/lablup/backend.ai-client-js>`_
 
-Then install the client library from PyPI.
+Java
+----
 
-.. code-block:: shell
+The Java SDK is used for implementing our IntelliJ/PyCharm plugins.
 
-   (venv-backend-ai) $ pip install -U pip wheel setuptools
-   (venv-backend-ai) $ pip install sorna-client
+* :doc:`Documentation for Backend.AI Client SDK for Java <client-java:index>` (under construction)
+* `Source repository for Backend.AI Client SDK for Java <https://github.com/lablup/backend.ai-client-java>`_
 
-Configuration
--------------
+PHP
+---
 
-Set your API keypair as environment variables:
-
-.. code-block:: shell
-
-   (venv-backend-ai) $ export BACKEND_ACCESS_KEY=AKIA...
-   (venv-backend-ai) $ export BACKEND_SECRET_KEY=...
-
-The run Python in the virtual environment and check if your credentials are valid:
-
-.. code-block:: python
-
-   >>> from sorna.request import Request
-   >>> request = Request('GET', '/authorize', {'echo': 'test'})
-   >>> request.sign()
-   >>> response = request.send()
-   >>> response.status
-   200
-   >>> response.json()
-   {'authorized': 'yes', 'echo': 'test'}
+* :doc:`Documentation for Backend.AI Client SDK for PHP <client-js:index>` (under construction)
+* `Source repository for Backend.AI Client SDK for PHP <https://github.com/lablup/backend.ai-client-php>`_ (under construction)
